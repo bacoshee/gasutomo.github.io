@@ -21,13 +21,36 @@ body {
 
 h1 {
     margin-bottom: 30px;
-    color: #4a90e2;
+    color: #000000;
 }
+
+h1.title {
+    display: flex;
+    align-items: center;   /* 画像と文字を縦中央揃え */
+    justify-content: center; /* タイトル全体を中央寄せ */
+    gap: 10px;             /* 画像と文字の間隔 */
+}
+
+.title-img {
+    width: 50px;  /* 画像サイズ */
+    height: 50px;
+    object-fit: contain;
+}
+
 
 .slot-container {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+}
+
+/* スロット1つ分の親divを縦に揃えて中央寄せ */
+.slot-container > div {
+    display: flex;
+    flex-direction: column;  /* 縦方向 */
+    align-items: center;     /* 中央揃え */
+    width: 100px;            /* スロット幅に揃える */
+    margin: 0 10px;          /* スロット間隔 */
 }
 
 .slot {
@@ -40,7 +63,6 @@ h1 {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    margin: 0 10px;
     transition: transform 0.2s ease;
 }
 
@@ -49,8 +71,8 @@ h1 {
 }
 
 .stopButton, .startButton {
-    margin-top: 10px;
-    padding: 12px 20px;
+    width: 100px;            /* 横幅を固定 */
+    padding: 10px 0;         /* 上下paddingで高さ調整 */
     font-size: 16px;
     font-weight: bold;
     color: white;
@@ -59,7 +81,11 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;      /* 文字を1行に固定 */
+    text-align: center;
 }
+
+
 
 .stopButton:hover, .startButton:hover {
     background-color: #357ABD;
@@ -74,12 +100,27 @@ h1 {
     font-size: 20px;
     margin-top: 20px;
     color: #333;
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .slot img {
     width: 80px;
     height: 80px;
-    object-fit: cover; /* 画像を丸く切り抜く */
-    border-radius: 50%; /* ← これで丸くなる */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ストップボタンは初期非表示 */
+.stopButton {
+    display: none;
+    /* width: 100%; ← 削除 */
+    margin-top: 10px;
+}
+
+
+/* 非活性用スタイル */
+.disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed !important;
+    transform: none !important;
 }
